@@ -42,6 +42,7 @@ Setelah itu merubah tampilan home agar ada tombol edit & hapus
 
 Kemudian membuat popup untuk delete data
  ![alt text](<WhatsApp Image 2025-10-27 at 23.51.17.jpeg>)
+ 
 ## D. Analisis Kode
 1.lib/api_service.dart
 Ini adalah file layanan (service) yang bertugas mengelola semua komunikasi dengan API eksternal (dalam hal ini reqres.in).
@@ -50,6 +51,7 @@ Ini adalah file layanan (service) yang bertugas mengelola semua komunikasi denga
 •	createUser(): Mengirim (POST) data untuk membuat pengguna baru.
 •	updateUser(): Mengirim (PUT) data untuk memperbarui pengguna yang ada berdasarkan ID.
 •	deleteUser(): Mengirim (DELETE) permintaan untuk menghapus pengguna berdasarkan ID.
+
 2. lib/main.dart
 Ini adalah file utama dan titik masuk aplikasi.
 •	Fungsi main() akan menjalankan aplikasi.
@@ -62,18 +64,20 @@ o	Menampilkan daftar pengguna menggunakan ListView.builder dan widget UserListIt
 o	Menyediakan fitur RefreshIndicator (tarik untuk refresh).
 o	Memiliki FloatingActionButton untuk menavigasi ke halaman AddUserPage (Tambah User).
 o	Mengatur logika untuk _handleEdit (navigasi ke EditUserPage) dan _handleDelete (menampilkan dialog konfirmasi dan memanggil API).
+
 3.lib/edit_user_page.dart
 Ini adalah halaman (layar) untuk mengedit pengguna yang sudah ada.
 •	Sangat mirip dengan AddUserPage, namun halaman ini menerima objek User sebagai parameter.
 •	Saat halaman dibuka (initState), TextEditingController akan langsung diisi dengan data pengguna yang ada (widget.user).
 •	Saat tombol "Update User" ditekan, fungsi _onSubmit akan memanggil apiService.updateUser().
 •	Sama seperti halaman tambah, ia akan menampilkan SnackBar dan kembali ke halaman daftar jika berhasil.
+
 4. lib/user_list_item.dart
 Ini adalah widget UI kustom yang digunakan untuk menampilkan satu item pengguna di dalam ListView pada main.dart.
 •	Merupakan StatelessWidget yang menerima objek User.
 •	Bertanggung jawab untuk tampilan visual satu baris pengguna (menggunakan Card, ListTile, CircleAvatar dengan Hero animation, dll.).
 •	Menerima fungsi callback onEdit dan onDelete dari UserListPage. Ini memungkinkan tombol "Edit" dan "Delete" di dalam item ini untuk memicu fungsi yang ada di main.dart.
 
-Kesimpulan & Saran
+## Kesimpulan & Saran
 Setelah melakukan praktikum tersebut, saya menyimpulkan bahwa aplikasi Flutter untuk manajemen pengguna dengan fungsi CRUD (CREATE,UPDATE,READ,DELETE) telah dibuat dengan baik dan berjalan sesuai tujuan. Aplikasi ini juga telah berhasil melakukan komunikasi dengan REST API publik (reqres.in) menggunakan paket http. Untuk salah satu proyek, saya rasa pembagian tanggung jawab di dalam proyek berjalan dengan baik. Untuk logika bisnis dan pemanggilan API, semuanya telah dikelola dalam satu kelas layanan (api_service.dart). Adanya model data seperti user_model.dart dan created_user_model.dart juga sangat membantu dalam manajemen dan pem-parsing-an data JSON dari API, sehingga menjadikan kode di lapisan UI lebih bersih. Dan juga  untuk aplikasi ini bisa ditambahkan peningkatan penanganan error, agar Ketika mengakses aplikasi jika terdapat kesalahan bisa langsung terlihat.
 
